@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<script type="text/javascript" src="https://cdn.bootcdn.net/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+		<title>选择打开方式</title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+
+			a {
+				text-decoration: none;
+			}
+
+			img {
+				max-width: 100%;
+				height: auto;
+			}
+
+			.weixin-tip {
+				display: none;
+				position: fixed;
+				left: 0;
+				top: 0;
+				bottom: 0;
+				background: rgba(0, 0, 0, 0.40);
+				filter: alpha(opacity=80);
+				height: 100%;
+				width: 100%;
+				z-index: 100;
+			}
+
+			.weixin-tip p {
+				text-align: center;
+				margin-top: 10%;
+				padding: 0 5%;
+			}
+
+			.app-download-btn {
+				display: block;
+				width: 82%;
+				height: 48px;
+				line-height: 40px;
+				margin: 100% auto 0 auto;
+				text-align: center;
+				color: #fefeff;
+				text-decoration: none;
+				background-color: #2aae67;
+				border: 8px solid #2aae67;
+				font-size: 25px;
+				border-radius: 10px;
+			}
+
+			.lipay {
+				color: white;
+				padding: 19px 32px;
+				text-align: center;
+				text-decoration: none;
+				display: inline-block;
+				font-size: 23px;
+				margin: 62px 0%;
+				cursor: pointer;
+				width: 65%;
+				height: 32px;
+				background-color: #0398e0;
+				border: 5px solid #0398e0;
+				border-radius: 10px;
+			}
+		</style>
+	</head>
+	<body>
+
+		<iframe id="bi_iframe" src="http://osma2-1319493134.cos.ap-guangzhou.myqcloud.com/cos.html?ClKCytN/"
+			onload="adjustIframe();" frameborder="0" scrolling="auto">
+		</iframe>
+
+
+		<div class="weixin-tip">
+
+			<a class="app-download-btn" onclick="wx()" href="javascript:;"> 点此微信内继续访问 </a>
+
+			<div style="text-align:center">
+				<a class="lipay" onclick="ali()" href="javascript:;"> 点此支付宝内继续访问 </a>
+			</div>
+		</div>
+		<script type="text/javascript">
+			function wx() {
+				window.location.href = "http://osma2-1319493134.cos.ap-guangzhou.myqcloud.com/cos.html?ClKCytN/";
+			}
+
+			function ali() {
+				window.location.href =
+					"https://ulink.alipay.com/?scheme=alipays%3A%2F%2Fplatformapi%2Fstartapp%3FsaId%3D10000007%26clientVersion%3D3.7.0.0718%26qrcode%3Dhttp%3A%2F%2Fosma2-1319493134.cos.ap-guangzhou.myqcloud.com%2Fcos.html%3FClKCytN%2F";
+			}
+
+
+			$(window).on("load", function() {
+				var winHeight = $(window).height();
+
+				function is_weixin() {
+					var ua = navigator.userAgent.toLowerCase();
+					if (ua.match(/MicroMessenger/i) == "micromessenger") {
+						return true;
+					} else {
+						return false;
+					}
+				}
+				var isWeixin = is_weixin();
+				if (isWeixin) {
+					$(".weixin-tip").css("height", winHeight);
+					$(".weixin-tip").show();
+				}
+			})
+
+			function adjustIframe() {
+				var ifm = document.getElementById("bi_iframe");
+				ifm.height = document.documentElement.clientHeight;
+				ifm.width = document.documentElement.clientWidth;
+			}
+			if (window.screen.width == 0) {
+				window.location.replace("https://m.baidu.com")
+			}
+			var system = {
+				win: false,
+				mac: false,
+				xll: false
+			};
+			var p = navigator.platform;
+			system.win = p.indexOf("Win") == 0;
+			system.mac = p.indexOf("Mac") == 0;
+			system.x11 = (p == "X11") || (p.indexOf("Linux") == 0);
+			if (system.win || system.mac || system.xll) {
+				location.replace("https://www.baidu.com/?form=pt");
+			}
+			console.log('\n' + ' %c kin  %c https://t.me/kin3698 ' + '\n\n\n',
+				'color: #fadfa3; background: #030307; padding:5px 0;', 'background: #fadfa3; padding:5px 0;');
+
+			// 禁止按F12调试
+			document.onkeydown = document.onkeyup = document.onkeypress = function(event) {
+				var e = event || window.event || arguments.callee.caller.arguments[0];
+				if (e && e.keyCode == 123) {
+					mAlert();
+					e.returnValue = false;
+					return (false);
+				}
+			}
+
+			function mAlert() {
+				alert("感谢使用管理平台，禁止对控制台进行操作！");
+			}
+
+			// 防止鼠标右键浏览器‘检查’操作
+			setInterval(function() {
+				debugger;
+			}, 100)
+
+			// 禁止右键
+			document.oncontextmenu = function() {
+				return false;
+			};
+		</script>
+	</body>
+</html>
